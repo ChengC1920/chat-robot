@@ -40,7 +40,7 @@ export default function Home() {
     setIsLoading(true)
 
     try {
-      // 调用API服务
+      // 直接调用DeepSeek API
       const allMessages = [...messages, userMessage]
       const aiResponse = await sendMessage(allMessages)
       

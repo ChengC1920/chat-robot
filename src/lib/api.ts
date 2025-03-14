@@ -1,18 +1,8 @@
 import axios from 'axios'
 import { Message } from './types'
 
+// 直接从客户端调用DeepSeek API
 export async function sendMessage(messages: Message[]) {
-  try {
-    const response = await axios.post('/api/chat', { messages })
-    return response.data
-  } catch (error) {
-    console.error('Error sending message to API:', error)
-    throw error
-  }
-}
-
-// DeepSeek API集成
-export async function sendMessageToDeepSeek(messages: Message[]) {
   try {
     // 转换消息格式为DeepSeek API所需格式
     const formattedMessages = messages.map(msg => ({
@@ -22,8 +12,9 @@ export async function sendMessageToDeepSeek(messages: Message[]) {
     
     console.log('Sending to DeepSeek API:', JSON.stringify(formattedMessages))
     
+    // 使用CORS代理
     const response = await axios.post(
-      'https://api.deepseek.com/v1/chat/completions',
+      'https://cors-anywhere.herokuapp.com/https://api.deepseek.com/v1/chat/completions',
       {
         model: 'deepseek-chat',
         messages: formattedMessages,
@@ -33,7 +24,8 @@ export async function sendMessageToDeepSeek(messages: Message[]) {
       {
         headers: {
           'Content-Type': 'application/json',
-          'Authorization': `Bearer ${process.env.NEXT_PUBLIC_DEEPSEEK_API_KEY || 'sk-d0eb23da9e8049c397dd9d2a7515a802'}`
+          'Authorization': `Bearer ${process.env.NEXT_PUBLIC_DEEPSEEK_API_KEY || 'sk-d0eb23da9e8049c397dd9d2a7515a802'}`,
+          'X-Requested-With': 'XMLHttpRequest'
         }
       }
     )
@@ -42,7 +34,10 @@ export async function sendMessageToDeepSeek(messages: Message[]) {
     
     // 处理DeepSeek API响应
     if (response.data && response.data.choices && response.data.choices.length > 0) {
-      return response.data.choices[0].message
+      return {
+        role: 'assistant',
+        content: response.data.choices[0].message.content
+      }
     } else {
       throw new Error('无效的DeepSeek API响应格式')
     }
