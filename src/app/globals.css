@@ -1,0 +1,90 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --foreground-rgb: 23, 23, 23;
+  --background-rgb: 250, 250, 250;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --foreground-rgb: 250, 250, 250;
+    --background-rgb: 23, 23, 23;
+  }
+}
+
+body {
+  color: rgb(var(--foreground-rgb));
+  background: rgb(var(--background-rgb));
+  font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+}
+
+@layer components {
+  .chat-container {
+    @apply flex flex-col h-screen bg-neutral-50 dark:bg-neutral-900;
+  }
+  
+  .chat-messages {
+    @apply flex-1 overflow-y-auto p-4 space-y-6 max-w-3xl mx-auto w-full;
+  }
+  
+  .message {
+    @apply p-4 rounded-lg max-w-[85%] shadow-message transition-all;
+  }
+  
+  .user-message {
+    @apply bg-primary-700 text-white self-end rounded-tr-none;
+  }
+  
+  .ai-message {
+    @apply bg-white dark:bg-neutral-800 text-neutral-800 dark:text-neutral-100 self-start rounded-tl-none border border-neutral-200 dark:border-neutral-700;
+  }
+  
+  .chat-input-container {
+    @apply border-t border-neutral-200 dark:border-neutral-800 p-4 bg-white dark:bg-neutral-900 sticky bottom-0;
+  }
+  
+  .chat-input-wrapper {
+    @apply max-w-3xl mx-auto w-full relative;
+  }
+  
+  .chat-input {
+    @apply w-full p-4 pr-16 border border-neutral-300 dark:border-neutral-700 rounded-xl focus:outline-none focus:ring-1 focus:ring-primary-600 dark:focus:ring-primary-400 bg-white dark:bg-neutral-800 text-neutral-900 dark:text-white shadow-input resize-none;
+  }
+  
+  .send-button {
+    @apply absolute right-3 bottom-3 bg-primary-600 text-white p-2 rounded-lg hover:bg-primary-700 transition-colors disabled:opacity-50 disabled:cursor-not-allowed;
+  }
+  
+  .thinking-indicator {
+    @apply flex space-x-2 items-center p-3 text-sm text-neutral-500;
+  }
+  
+  .thinking-dot {
+    @apply w-2 h-2 rounded-full bg-neutral-400 opacity-75;
+  }
+  
+  .dot-1 {
+    animation: pulse 1.5s infinite ease-in-out;
+  }
+  
+  .dot-2 {
+    animation: pulse 1.5s infinite ease-in-out 0.2s;
+  }
+  
+  .dot-3 {
+    animation: pulse 1.5s infinite ease-in-out 0.4s;
+  }
+  
+  @keyframes pulse {
+    0%, 100% {
+      opacity: 0.4;
+      transform: scale(0.8);
+    }
+    50% {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+} 
