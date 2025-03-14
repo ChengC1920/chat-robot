@@ -12,9 +12,9 @@ export async function sendMessage(messages: Message[]) {
     
     console.log('Sending to DeepSeek API:', JSON.stringify(formattedMessages))
     
-    // 使用CORS代理
+    // 使用更可靠的CORS代理
     const response = await axios.post(
-      'https://cors-anywhere.herokuapp.com/https://api.deepseek.com/v1/chat/completions',
+      'https://corsproxy.io/?https://api.deepseek.com/v1/chat/completions',
       {
         model: 'deepseek-chat',
         messages: formattedMessages,

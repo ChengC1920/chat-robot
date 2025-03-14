@@ -31,7 +31,14 @@ jobs:
         run: npm run build
 
       - name: Add .nojekyll file
-        run: touch out/.nojekyll
+        run: |
+          touch out/.nojekyll
+          cp index.html out/
+
+      - name: Fix paths in HTML files
+        run: |
+          find out -name "*.html" -type f -exec sed -i 's/"\/_next/".\/chat-robot\/_next/g' {} \;
+          find out -name "*.html" -type f -exec sed -i 's/"\/_next/"..\/_next/g' {} \;
 
       - name: Deploy
         uses: JamesIves/github-pages-deploy-action@v4

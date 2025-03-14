@@ -5,34 +5,11 @@ const nextConfig = {
   images: {
     unoptimized: true,
   },
-  // 根据环境决定是否使用basePath和assetPrefix
-  ...(process.env.NODE_ENV === 'production' ? {
-    basePath: '/chat-robot',
-    assetPrefix: '/chat-robot',
-  } : {}),
+  // 始终使用basePath和assetPrefix，确保GitHub Pages正确加载
+  basePath: '/chat-robot',
+  assetPrefix: '/chat-robot',
   output: 'export',
-  // 添加CORS头
-  async headers() {
-    return [
-      {
-        source: '/(.*)',
-        headers: [
-          {
-            key: 'Access-Control-Allow-Origin',
-            value: '*',
-          },
-          {
-            key: 'Access-Control-Allow-Methods',
-            value: 'GET,OPTIONS,PATCH,DELETE,POST,PUT',
-          },
-          {
-            key: 'Access-Control-Allow-Headers',
-            value: 'X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version, Authorization',
-          },
-        ],
-      },
-    ]
-  },
+  // 移除headers配置，因为它在静态导出中不起作用
 }
 
 module.exports = nextConfig 
