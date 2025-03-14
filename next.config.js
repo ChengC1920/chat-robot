@@ -6,8 +6,8 @@ const nextConfig = {
     unoptimized: true,
   },
   // 如果您要部署到GitHub Pages上的子目录，请取消注释并修改以下行
-  // basePath: '/deepseek-chat',
-  // assetPrefix: '/deepseek-chat',
+  // basePath: '/chat-robot',
+  // assetPrefix: '/chat-robot',
 }
 
 module.exports = nextConfig 

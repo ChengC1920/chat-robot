@@ -15,7 +15,7 @@
 
 ## 在线体验
 
-访问 [https://your-username.github.io/deepseek-chat](https://your-username.github.io/deepseek-chat) 体验在线版本
+访问 [https://ChengC1920.github.io/chat-robot](https://ChengC1920.github.io/chat-robot) 体验在线版本
 
 ## 本地开发
 
@@ -30,8 +30,8 @@
 1. 克隆仓库
 
 ```bash
-git clone https://github.com/your-username/deepseek-chat.git
-cd deepseek-chat
+git clone https://github.com/ChengC1920/chat-robot.git
+cd chat-robot
 ```
 
 2. 安装依赖
@@ -63,7 +63,7 @@ yarn dev
 
 ### 部署到 Vercel
 
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fyour-username%2Fdeepseek-chat)
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2FChengC1920%2Fchat-robot)
 
 1. 点击上方按钮
 2. 按照 Vercel 的指示完成部署
